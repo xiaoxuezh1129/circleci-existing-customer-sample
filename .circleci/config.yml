@@ -1,0 +1,19 @@
+version: 2.1
+
+jobs:
+  test:
+    docker:
+      - image: cimg/node:22.11
+    steps:
+      - checkout
+      - run: npm ci
+      - run:
+          name: Run tests
+          command: npx vitest run --reporter=junit --outputFile=test-reports/junit.xml
+      - store_test_results:
+          path: test-reports
+
+workflows:
+  main:
+    jobs:
+      - test
