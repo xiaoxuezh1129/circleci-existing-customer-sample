@@ -1,0 +1,13 @@
+{
+  "name": "circleci-smarter-testing-sample",
+  "version": "1.0.0",
+  "description": "A tiny shop-checkout project with simple tests, used to try out CircleCI Smarter Testing.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "vitest": "^3.2.4"
+  }
+}
