@@ -7,11 +7,7 @@ jobs:
     steps:
       - checkout
       - run: npm ci
-      - run:
-          name: Run tests
-          command: npx vitest run --reporter=junit --outputFile=test-reports/junit.xml
-      - store_test_results:
-          path: test-reports
+      - run: circleci testsuite run "ci tests"
 
 workflows:
   main:
