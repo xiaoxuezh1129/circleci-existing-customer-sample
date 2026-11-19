@@ -8,6 +8,7 @@
     "test": "vitest run"
   },
   "devDependencies": {
-    "vitest": "^3.2.4"
+    "@circleci/vitest-circleci-coverage": "^0.4.1291",
+    "vitest": "^5.1.1"
   }
 }
