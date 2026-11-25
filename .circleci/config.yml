@@ -1,16 +1,41 @@
 version: 2.1
 
-jobs:
-  test:
+executors:
+  node:
     docker:
       - image: cimg/node:22.12
-    parallelism: 2
+
+commands:
+  setup:
     steps:
       - checkout
       - run: npm ci
+
+jobs:
+  list-tests:
+    executor: node
+    steps:
+      - setup
+      - run: circleci testsuite list-tests "ci tests" --key=ci-tests-parallelism-key
+
+  test:
+    executor: node
+    parallelism: 4
+    steps:
+      - setup
       - run: circleci testsuite run "ci tests"
 
 workflows:
   main:
     jobs:
-      - test
+      - list-tests
+      - test:
+          requires:
+            - list-tests
+
+experimental:
+  dynamic-parallelism:
+    test:
+      key: ci-tests-parallelism-key
+      min: 1
+      max: 4
