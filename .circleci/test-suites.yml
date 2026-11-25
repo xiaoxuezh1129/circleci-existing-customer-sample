@@ -10,3 +10,4 @@ analysis: |
 options:
   store-test-results: true
   test-impact-analysis: true
+  dynamic-test-splitting: true
