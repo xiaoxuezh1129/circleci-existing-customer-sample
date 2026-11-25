@@ -4,6 +4,7 @@ jobs:
   test:
     docker:
       - image: cimg/node:22.12
+    parallelism: 2
     steps:
       - checkout
       - run: npm ci
